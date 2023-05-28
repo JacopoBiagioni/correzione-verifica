@@ -17,9 +17,9 @@ app.config["MONGO_URI"] = "mongodb+srv://jbiagioni:M7JYoNondmtLqBJk@atlascluster
 mongo = PyMongo(app)
 CORS(app)
 tane = mongo.db.tane
-output = []
-for s in tane.find():
-    output.append({"lat": s['lat'], "lng": s['lng']})
+#output = []
+#for s in tane.find():
+#    output.append({"lat": s['lat'], "lng": s['lng']})
 
 @app.route("/all")
 def all():
