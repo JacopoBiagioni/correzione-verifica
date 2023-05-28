@@ -13,8 +13,8 @@ export class AppComponent {
   title = 'google-maps';
 
   center: google.maps.LatLngLiteral = {lat: 35.68051015980639, lng: 139.69876694123647};
-  markerOptions! : { icon : google.maps.Icon };
-  markers!: Marker[];
+  markerOptions : { icon : google.maps.Icon };
+  markers: Marker[];
   zoom: number = 10;
   bottone: boolean = true
 
@@ -22,6 +22,28 @@ export class AppComponent {
 
     this.markers = []
     //richiesta HTTP GET all'URL, per ottenere un array di coordinate (Coords[])
-    this.http.get<Coords[]>('')
+    this.http.get<Coords[]>('https://5000-jacopobiagi-correzionev-elem6pljz7d.ws-eu98.gitpod.io/all').subscribe(data => {
+      for (let d of data) {
+        //Per ogni coordinata (d) nell'array di dati ricevuto, vengono estratti i valori di lat e lng.
+        let lat = d.lat
+        let lng = d.lng 
+        //crea una nuova istanza di un oggetto Marker utilizzando i valori di lat e lng estratti e viene aggiunto all'array markers.
+        let marker : Marker = new Marker(lat, lng)
+        //popola l'array markers con oggetti Marker creati dalle coordinate ricevute
+        this.markers.push(marker)
+      }
+    })
+
+    let iconData: google.maps.Icon = {
+      url: './assets/img/hole.png',
+      scaledSize: new google.maps.Size(48, 48)
+    }
+    // iniziallizza la variabile markerOptions con un oggetto che ha una proprietà icon che punta all'oggetto iconData.
+    this.markerOptions = { icon: iconData }
   }
+
+  click(): void {
+    this.bottone = !this.bottone
+  }
+
 }
