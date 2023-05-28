@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { Marker } from './model/marker.model';
+import { Coords } from './model/coord.model';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +11,38 @@ import { HttpClient } from '@angular/common/http'
 export class AppComponent {
   title = 'google-maps';
 
-  center : google.maps.LatLngLiteral = { lat: 40.70840010689748, lng: -74.04284125121363}
+  center : google.maps.LatLngLiteral = { lat: 40.70840010689748, lng: -74.04284125121363};
+  markers : Marker[];
+  markerOptions! : { icon : google.maps.Icon }
+  bottone: boolean = true
+
 
   constructor ( public http:HttpClient ) {
-  
+    this.markers = [];
 
+    this.http.get<Coords[]>("https://5000-jacopobiagi-correzionev-tzmggfko11h.ws-eu98.gitpod.io/all").subscribe(data => {
+      for (let d of data) {
+        let lat = d.lat
+        let lng = d.lng
+        let marker : Marker = new Marker(lat, lng);
+        this.markers.push(marker)
+      }
+  })
+
+  let iconData: google.maps.Icon = {
+    url: './assets/img/hatch.png',
+    scaledSize: new google.maps.Size(60, 60)
+  }
+
+  this.markerOptions = { icon: iconData }
 
   }
 
+  click(): void {
+    this.bottone = !this.bottone
+  }
 
-  this.http.get<Prova[]>("https://5000-jacopobiagi-correzionev-uo2zf51dfx6.ws-eu97.gitpod.io/all").subscribe(data =>{
-     
-    })
+  
 
 
 
