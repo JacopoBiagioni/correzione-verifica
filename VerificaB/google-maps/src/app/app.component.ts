@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { GoogleMap } from '@angular/google-maps';
 import { HttpClient } from '@angular/common/http';
 import { Marker } from './model/marker.model';
 import { Coords } from './model/coord.model';
@@ -44,6 +43,78 @@ export class AppComponent {
 
   click(): void {
     this.bottone = !this.bottone
+  }
+
+  pikachu(): void {
+    this.http.get<Coords>('https://5000-jacopobiagi-correzionev-elem6pljz7d.ws-eu98.gitpod.io/pikachu').subscribe(data => {
+
+      let lat = data.lat
+      let lng = data.lng
+      let marker: Marker = new Marker(lat, lng)
+      this.markers = [data]
+
+
+    })
+    let iconData: google.maps.Icon = {
+      url: './assets/img/pikachu.png',
+      scaledSize: new google.maps.Size(48, 48)
+    }
+
+    this.markerOptions = { icon: iconData }
+  }
+
+  snorlax(): void {
+    this.http.get<Coords>('https://5000-jacopobiagi-correzionev-elem6pljz7d.ws-eu98.gitpod.io/snorlax').subscribe(data => {
+
+      let lat = data.lat
+      let lng = data.lng
+      let marker: Marker = new Marker(lat, lng)
+      this.markers = [data]
+
+
+    })
+    let iconData: google.maps.Icon = {
+      url: './assets/img/snorlax.png',
+      scaledSize: new google.maps.Size(48, 48)
+    }
+
+    this.markerOptions = { icon: iconData }
+  }
+
+  charmander(): void {
+    this.http.get<Coords>('https://5000-jacopobiagi-correzionev-elem6pljz7d.ws-eu98.gitpod.io/charmander').subscribe(data => {
+
+      let lat = data.lat
+      let lng = data.lng
+      let marker: Marker = new Marker(lat, lng)
+      this.markers = [data]
+
+
+    })
+    let iconData: google.maps.Icon = {
+      url: './assets/img/charmander.png',
+      scaledSize: new google.maps.Size(48, 48)
+    }
+
+    this.markerOptions = { icon: iconData }
+  }
+
+  bulbasaur(): void {
+    this.http.get<Coords>('https://5000-jacopobiagi-correzionev-elem6pljz7d.ws-eu98.gitpod.io/bulbasaur').subscribe(data => {
+
+      let lat = data.lat
+      let lng = data.lng
+      let marker: Marker = new Marker(lat, lng)
+      this.markers = [data]
+
+
+    })
+    let iconData: google.maps.Icon = {
+      url: './assets/img/bullbasaur.png',
+      scaledSize: new google.maps.Size(48, 48)
+    }
+
+    this.markerOptions = { icon: iconData }
   }
 
 }

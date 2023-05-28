@@ -27,9 +27,9 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb+srv://jbiagioni:M7JYoNondmtLqBJk@atlascluster.wjczksx.mongodb.net/tartarughe" #Importante qui va specificato il nome del DB
 mongo = PyMongo(app)
 CORS(app)
-tane = mongo.db.tane
+tartarughe = mongo.db.ninja
 output = []
-for s in tane.find():
+for s in tartarughe.find():
     output.append({"lat": s['lat'], "lng": s['lng']})
 
 @app.route("/all")
