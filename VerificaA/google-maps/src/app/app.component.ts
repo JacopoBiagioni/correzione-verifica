@@ -27,14 +27,14 @@ export class AppComponent {
         let marker : Marker = new Marker(lat, lng);
         this.markers.push(marker)
       }
-  })
+    })
 
-  let iconData: google.maps.Icon = {
-    url: './assets/img/hatch.png',
-    scaledSize: new google.maps.Size(60, 60)
-  }
+    let iconData: google.maps.Icon = {
+      url: './assets/img/hatch.png',
+      scaledSize: new google.maps.Size(60, 60)
+    }
 
-  this.markerOptions = { icon: iconData }
+    this.markerOptions = { icon: iconData }
 
   }
 
@@ -42,8 +42,60 @@ export class AppComponent {
     this.bottone = !this.bottone
   }
 
-  
+  Raffaello(): void {
+    this.http.get<Coords>("https://5000-jacopobiagi-correzionev-tzmggfko11h.ws-eu98.gitpod.io/raffaello").subscribe(data => {
 
+      let marker: Marker = new Marker(data.lat, data.lng);
+      this.markers = [marker]
+    })
+    let iconData: google.maps.Icon = {
+      url: './assets/img/Yellowicon-Tmnt-Rafael.ico',
+      scaledSize: new google.maps.Size(48, 48)
+    }
 
+    this.markerOptions = { icon: iconData }
 
-}
+  }
+  Donatello(): void {
+    this.http.get<Coords>("https://5000-jacopobiagi-correzionev-tzmggfko11h.ws-eu98.gitpod.io/donatello").subscribe(data => {
+
+    let marker: Marker = new Marker(data.lat, data.lng);
+    this.markers = [marker]
+  })
+  let iconData: google.maps.Icon = {
+    url: './assets/img/Yellowicon-Tmnt-Donatelo.ico',
+    scaledSize: new google.maps.Size(48, 48)
+  }
+
+  this.markerOptions = { icon: iconData }
+  }
+
+  Michelangelo(): void {
+    this.http.get<Coords>("https://5000-jacopobiagi-correzionev-tzmggfko11h.ws-eu98.gitpod.io/michelangelo").subscribe(data => {
+
+      let marker: Marker = new Marker(data.lat, data.lng);
+      this.markers = [marker]
+    })
+    let iconData: google.maps.Icon = {
+      url: './assets/img/Yellowicon-Tmnt-Michelangelo.ico',
+      scaledSize: new google.maps.Size(48, 48)
+    }
+
+    this.markerOptions = { icon: iconData }
+  }
+
+  Leonardo(): void {
+    this.http.get<Coords>("https://5000-jacopobiagi-correzionev-tzmggfko11h.ws-eu98.gitpod.io/leonardo").subscribe(data => {
+
+      let marker: Marker = new Marker(data.lat, data.lng);
+      this.markers = [marker]
+    })
+    let iconData: google.maps.Icon = {
+      url: './assets/img/Yellowicon-Tmnt-Leonardo.ico',
+      scaledSize: new google.maps.Size(48, 48)
+    }
+
+    this.markerOptions = { icon: iconData }
+  }
+} 
+

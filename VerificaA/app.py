@@ -17,6 +17,8 @@ import shapely.wkt
 # pip install shapely
 # pip install jsonify
 # npm i -g nodemon
+# pip install random
+
 
 app = Flask(__name__)
 
